@@ -14,5 +14,10 @@
 
 void	*realloc(void *ptr, size_t size)
 {
-	return (ft_realloc(ptr, size));
+	void	*addr;
+
+	pthread_mutex_lock(ft_malloc_mutex());
+	addr = ft_realloc(ptr, size);
+	pthread_mutex_unlock(ft_malloc_mutex());
+	return (addr);
 }

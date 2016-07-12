@@ -23,11 +23,8 @@
 
 void		show_alloc_mem_ex(int action);
 void		show_alloc_mem();
-void		*ft_realloc(void *ptr, size_t size);
 void		*realloc(void *ptr, size_t size);
-void		*ft_malloc(size_t size);
 void		*malloc(size_t size);
-void		ft_free(void *ptr);
 void		free(void *ptr);
 
 #endif

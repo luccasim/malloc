@@ -14,5 +14,10 @@
 
 void	*malloc(size_t size)
 {
-	return (ft_malloc(size));
+	void	*addr;
+
+	pthread_mutex_lock(ft_malloc_mutex());
+	addr = ft_malloc(size);
+	pthread_mutex_unlock(ft_malloc_mutex());
+	return (addr);
 }

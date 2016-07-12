@@ -19,7 +19,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C libft/
-	@$(CC) -shared -fPIC -o $(NAME) $(OBJ) $(LIB)
+	@$(CC) -shared -fPIC -o $(NAME) -lpthread $(OBJ) $(LIB)
 	@ln -s $(NAME) $(LINK)
 	@echo "\033[32;1m$(NAME) created successfully!\033[0m"
 

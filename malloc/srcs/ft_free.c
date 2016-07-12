@@ -12,25 +12,29 @@
 
 #include "malloc_struct.h"
 
+static int		free_condition(t_head *head)
+{
+	if (head->n >= N - 1)
+		return (1);
+	if ((head->n >= N - 4) && (head->m == 1))
+		return (1);
+	return (0);
+}
+
 static int		check_munmap(t_head *free)
 {
 	t_bloc	*bloc;
-	t_head	*other;
+	t_head	*delete;
 	t_head	*tmp;
 
 	bloc = (t_bloc *)free + 1;
 	tmp = g_head;
 	if (bloc->type == 'L' && bloc->status == FREE)
 		return (ft_head_del(free));
-	other = NULL;
-	while (tmp)
-	{
-		bloc = (t_bloc *)tmp + 1;
-		if (tmp->n <= N - 1)
-			other = tmp;
-		tmp = tmp->next;
-	}
-	if (other)
+	delete = NULL;
+	if (free_condition(tmp))
+		delete = tmp;
+	if (delete)
 		return (ft_head_del(free));
 	return (0);
 }

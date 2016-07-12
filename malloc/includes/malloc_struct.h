@@ -17,6 +17,7 @@
 # include "ft_printf.h"
 # include "malloc.h"
 # include <unistd.h>
+# include <pthread.h>
 
 # define PROT_FLAGS	PROT_READ | PROT_WRITE
 # define MAP_FLAGS	MAP_ANON | MAP_PRIVATE
@@ -50,6 +51,13 @@ typedef struct		s_head
 }					t_head;
 
 t_head				*g_head;
+// pthread_mutex_t		g_mutex = PTHREAD_COND_INITIALIZER;
+
+pthread_mutex_t		*ft_malloc_mutex(void);
+
+void				*ft_realloc(void *ptr, size_t size);
+void				*ft_malloc(size_t size);
+void				ft_free(void *ptr);
 
 void				ft_bloc_set(t_head *head, t_bloc *bloc, size_t size);
 void				ft_bloc_unset(t_head *head, t_bloc *bloc);

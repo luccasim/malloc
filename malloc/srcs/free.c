@@ -14,5 +14,7 @@
 
 void	free(void *ptr)
 {
+	pthread_mutex_lock(ft_malloc_mutex());
 	ft_free(ptr);
+	pthread_mutex_unlock(ft_malloc_mutex());
 }
