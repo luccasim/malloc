@@ -18,12 +18,13 @@
 # include "malloc.h"
 # include <unistd.h>
 # include <pthread.h>
+# include <inttypes.h>
 
 # define PROT_FLAGS	PROT_READ | PROT_WRITE
 # define MAP_FLAGS	MAP_ANON | MAP_PRIVATE
 # define MIN(X, Y) 	(((X) < (Y)) ? (X) : (Y))
-# define USED		1
-# define FREE		0
+# define USED		'U'
+# define FREE		'F'
 # define MARG		-10
 # define AREA_SIZE	(getpagesize() / 4)
 # define N			(AREA_SIZE + BLOC_SIZE)
@@ -38,7 +39,8 @@ typedef struct		s_bloc
 {
 	char			type;
 	char			status;
-	unsigned int	size;
+	uint32_t		size;
+	unsigned int	timestamp;
 	struct s_bloc	*next;
 }					t_bloc;
 
@@ -51,7 +53,6 @@ typedef struct		s_head
 }					t_head;
 
 t_head				*g_head;
-// pthread_mutex_t		g_mutex = PTHREAD_COND_INITIALIZER;
 
 pthread_mutex_t		*ft_malloc_mutex(void);
 

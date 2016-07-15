@@ -21,6 +21,7 @@ t_bloc		*ft_bloc_new(void *addr, size_t size)
 	bloc->status = FREE;
 	bloc->size = 0;
 	addr += size;
+	bloc->timestamp = 0;
 	bloc->next = addr;
 	return (bloc);
 }

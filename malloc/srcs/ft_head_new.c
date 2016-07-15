@@ -26,7 +26,7 @@ static size_t	page_size(size_t size)
 	return (nbr);
 }
 
-static void		segmentation_bloc(t_head *head)
+static int		segmentation_bloc(t_head *head, size_t mem)
 {
 	t_bloc	*bloc;
 	int		i;
@@ -34,26 +34,28 @@ static void		segmentation_bloc(t_head *head)
 
 	addr = head + 1;
 	i = 0;
-	while (i++ < head->n)
+	while (mem >= N)
 	{
 		bloc = ft_bloc_new(addr, N);
 		addr = bloc->next;
+		mem -= N;
+		++i;
 	}
 	bloc->next = NULL;
+	return (i);
 }
 
 static t_head	*small_head(void *addr, size_t page)
 {
-	t_head	*new;
-	int		i;
+	t_head		*new;
+	size_t		i;
 
 	i = page - HEAD_SIZE;
 	new = addr;
-	new->n = i / N;
 	new->m = 0;
 	new->size = page;
 	new->next = NULL;
-	segmentation_bloc(new);
+	new->n = segmentation_bloc(new, i);
 	return (new);
 }
 
@@ -67,7 +69,7 @@ static t_head	*large_head(void *addr, size_t page)
 	new->m = 0;
 	new->size = page;
 	new->next = NULL;
-	big = (t_bloc*)new + 1;
+	big = (t_bloc*)(new + 1);
 	big->type = 'L';
 	big->status = FREE;
 	big->next = NULL;

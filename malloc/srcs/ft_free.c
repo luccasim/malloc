@@ -27,7 +27,7 @@ static int		check_munmap(t_head *free)
 	t_head	*delete;
 	t_head	*tmp;
 
-	bloc = (t_bloc *)free + 1;
+	bloc = (t_bloc *)(free + 1);
 	tmp = g_head;
 	if (bloc->type == 'L' && bloc->status == FREE)
 		return (ft_head_del(free));

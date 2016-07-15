@@ -26,4 +26,5 @@ void		ft_bloc_unset(t_head *head, t_bloc *bloc)
 	}
 	bloc->status = FREE;
 	bloc->size = 0;
+	bloc->timestamp = 0;
 }

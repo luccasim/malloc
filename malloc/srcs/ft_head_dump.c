@@ -12,6 +12,20 @@
 
 #include "malloc_struct.h"
 
+static void dump_bloc(t_bloc *bloc)
+{
+	int i = 0;
+	char *tmp;
+	ft_printf("Test bloc! {%i}\n", BLOC_SIZE);
+	tmp = (char *)bloc;
+	while (i < (int)BLOC_SIZE)
+	{
+		ft_printf("[%c=%i]", tmp[i], tmp[i]);
+		i++;
+	}
+	ft_printf("\n");
+}
+
 static void		bloc_dump(t_bloc *bloc, int j)
 {
 	unsigned int	i;
@@ -23,6 +37,8 @@ static void		bloc_dump(t_bloc *bloc, int j)
 	size = (bloc->type == 'N') ? N : M;
 	size = (bloc->type == 'L') ? bloc->size : size - BLOC_SIZE;
 	use = (bloc->status == USED) ? 1 : 0;
+	if (j == 1)
+		dump_bloc(bloc);
 	while (i++ < (int)BLOC_SIZE)
 	{
 		if (use)
@@ -52,6 +68,7 @@ static void		head_dump(t_head *head)
 	while (b)
 	{
 		bloc_dump(b, j);
+		ft_printf("\n");
 		j++;
 		b = b->next;
 	}

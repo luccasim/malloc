@@ -30,7 +30,7 @@ static int	show_bloc(t_head *head, int status, int first)
 	void	*a;
 	int		ret;
 
-	b = (t_bloc *)head + 1;
+	b = (t_bloc *)(head + 1);
 	ret = 0;
 	while (b)
 	{

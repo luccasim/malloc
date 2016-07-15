@@ -12,12 +12,11 @@
 
 #include "malloc_struct.h"
 
-
 static t_bloc	*find_large(t_head *head)
 {
 	t_bloc	*tmp;
 
-	tmp = (t_bloc*)head + 1;
+	tmp = (t_bloc*)(head + 1);
 	if (tmp->status == FREE)
 		return (tmp);
 	return (NULL);
@@ -27,7 +26,7 @@ static t_bloc	*find_small(t_head *head)
 {
 	t_bloc	*tmp;
 
-	tmp = (t_bloc*)head + 1;
+	tmp = (t_bloc*)(head + 1);
 	while (tmp)
 	{
 		if (tmp->status == FREE)
@@ -42,7 +41,7 @@ static t_bloc	*find_tiny(t_head *head)
 {
 	t_bloc	*tmp;
 
-	tmp = (t_bloc*)head + 1;
+	tmp = (t_bloc*)(head + 1);
 	while (tmp)
 	{
 		if (tmp->status == FREE)

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "malloc_struct.h"
+#include <time.h>
 
 void	ft_bloc_set(t_head *head, t_bloc *bloc, size_t size)
 {
@@ -22,8 +23,9 @@ void	ft_bloc_set(t_head *head, t_bloc *bloc, size_t size)
 		n = (bloc->type == 'N') ? 1 : 0;
 		m = (bloc->type == 'M') ? 1 : 0;
 		head->n -= n;
-		head->m -= m;
+		head->m += m;
 	}
-	bloc->size = size;
 	bloc->status = USED;
+	bloc->size = size;
+	bloc->timestamp = time(NULL);
 }
