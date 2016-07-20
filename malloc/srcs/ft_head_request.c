@@ -45,7 +45,7 @@ static t_bloc	*find_tiny(t_head *head)
 	while (tmp)
 	{
 		if (tmp->status == FREE)
-				return (tmp);
+			return (tmp);
 		tmp = tmp->next;
 	}
 	return (NULL);

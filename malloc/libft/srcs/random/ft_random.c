@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_head_find.c                                     :+:      :+:    :+:   */
+/*   ft_random.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luccasim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/21 20:10:54 by luccasim          #+#    #+#             */
-/*   Updated: 2016/03/21 20:14:46 by luccasim         ###   ########.fr       */
+/*   Created: 2016/07/20 03:55:44 by luccasim          #+#    #+#             */
+/*   Updated: 2016/07/20 03:55:48 by luccasim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "malloc_struct.h"
+#include <time.h>
+#include <stdlib.h>
+#include "ft_random.h"
 
-t_bloc		*ft_head_find(t_head *head, void *addr)
+int		ft_random(void)
 {
-	t_bloc	*bloc;
+	static int		init = 1;
 
-	if (!head || !addr)
-		return (NULL);
-	bloc = (t_bloc *)(head + 1);
-	addr -= BLOC_SIZE;
-	while (bloc)
+	if (init)
 	{
-		if (addr == bloc)
-			return (bloc);
-		bloc = bloc->next;
+		init = 0;
+		srand(time(NULL));
 	}
-	return (NULL);
+	return (rand());
 }

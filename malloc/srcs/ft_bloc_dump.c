@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_head_find.c                                     :+:      :+:    :+:   */
+/*   ft_bloc_dump.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luccasim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/21 20:10:54 by luccasim          #+#    #+#             */
-/*   Updated: 2016/03/21 20:14:46 by luccasim         ###   ########.fr       */
+/*   Created: 2016/07/20 03:45:43 by luccasim          #+#    #+#             */
+/*   Updated: 2016/07/20 03:45:47 by luccasim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc_struct.h"
 
-t_bloc		*ft_head_find(t_head *head, void *addr)
+void	ft_bloc_dump(t_bloc *bloc)
 {
-	t_bloc	*bloc;
+	size_t	size;
+	size_t	i;
+	char	*tmp;
 
-	if (!head || !addr)
-		return (NULL);
-	bloc = (t_bloc *)(head + 1);
-	addr -= BLOC_SIZE;
-	while (bloc)
+	size = bloc->area_size;
+	i = BLOC_SIZE;
+	tmp = (char *)bloc;
+	while (i < size)
 	{
-		if (addr == bloc)
-			return (bloc);
-		bloc = bloc->next;
+		ft_printf("[%c]", tmp[i]);
+		i++;
 	}
-	return (NULL);
 }

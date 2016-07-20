@@ -21,6 +21,8 @@ void		ft_bloc_unset(t_head *head, t_bloc *bloc)
 	{
 		n = (bloc->type == 'N') ? 1 : 0;
 		m = (bloc->type == 'M') ? 1 : 0;
+		if (bloc->type == 'M')
+			ft_bloc_defragmentation(bloc);
 		head->n += n;
 		head->m += m;
 	}

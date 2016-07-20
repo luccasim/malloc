@@ -22,14 +22,13 @@
 
 # define PROT_FLAGS	PROT_READ | PROT_WRITE
 # define MAP_FLAGS	MAP_ANON | MAP_PRIVATE
-# define MIN(X, Y) 	(((X) < (Y)) ? (X) : (Y))
 # define USED		'U'
 # define FREE		'F'
 # define MARG		-10
 # define AREA_SIZE	(getpagesize() / 4)
 # define N			(AREA_SIZE + BLOC_SIZE)
 # define M			(N * 4 - (BLOC_SIZE * 3))
-# define NBR_ALLOC	((65 * 2) + 1)
+# define NBR_ALLOC 	132
 # define SMALL		(NBR_ALLOC - 1)
 # define TINY		SMALL * 4
 # define BLOC_SIZE	sizeof(t_bloc)
@@ -39,7 +38,8 @@ typedef struct		s_bloc
 {
 	char			type;
 	char			status;
-	uint32_t		size;
+	unsigned int	size;
+	unsigned int	area_size;
 	unsigned int	timestamp;
 	struct s_bloc	*next;
 }					t_bloc;
@@ -60,9 +60,10 @@ void				*ft_realloc(void *ptr, size_t size);
 void				*ft_malloc(size_t size);
 void				ft_free(void *ptr);
 
+void				ft_bloc_dump(t_bloc *bloc);
 void				ft_bloc_set(t_head *head, t_bloc *bloc, size_t size);
 void				ft_bloc_unset(t_head *head, t_bloc *bloc);
-void				ft_bloc_swap(t_bloc *a, t_bloc *b);
+void				ft_bloc_defragmentation(t_bloc *bloc);
 void				ft_bloc_cpy(t_bloc *str, t_bloc *dst);
 int					ft_bloc_create_small(t_head *head, t_bloc *bloc);
 t_bloc				*ft_bloc_new(void *addr, size_t size);

@@ -28,4 +28,7 @@ void	ft_bloc_set(t_head *head, t_bloc *bloc, size_t size)
 	bloc->status = USED;
 	bloc->size = size;
 	bloc->timestamp = time(NULL);
+	size = (bloc->type == 'N') ? N : M;
+	size = (bloc->type == 'L') ? bloc->size : size;
+	bloc->area_size = size;
 }

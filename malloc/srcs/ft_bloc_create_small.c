@@ -15,7 +15,7 @@
 int		ft_bloc_create_small(t_head *head, t_bloc *bloc)
 {
 	t_bloc		*tmp;
-	int		i;
+	int			i;
 
 	tmp = bloc;
 	i = 0;
@@ -32,5 +32,6 @@ int		ft_bloc_create_small(t_head *head, t_bloc *bloc)
 	head->n -= 4;
 	head->m += 1;
 	bloc->next = tmp;
+	ft_memset((bloc + 1), 0, M);
 	return (1);
 }

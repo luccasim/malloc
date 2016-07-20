@@ -15,7 +15,14 @@
 
 # include <stdarg.h>
 # include <inttypes.h>
-# include <stdio.h>
+
+# define WORD_OPT	"w:1"
+# define NBR_OPT	"y:1"
+# define WORD_LEN	"0"
+
+# define ENDL		"\n"
+# define WORD		"{" WORD_OPT "}%" WORD_LEN "s{e}"
+# define NBR(a)		"{" WORD_OPT "}" #a " = {e}{" NBR_OPT "}%lli{e}"
 
 int		ft_printf(char *str, ...);
 int		ft_fprintf(int fd, char *str, ...);

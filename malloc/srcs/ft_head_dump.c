@@ -12,63 +12,23 @@
 
 #include "malloc_struct.h"
 
-static void dump_bloc(t_bloc *bloc)
-{
-	int i = 0;
-	char *tmp;
-	ft_printf("Test bloc! {%i}\n", BLOC_SIZE);
-	tmp = (char *)bloc;
-	while (i < (int)BLOC_SIZE)
-	{
-		ft_printf("[%c=%i]", tmp[i], tmp[i]);
-		i++;
-	}
-	ft_printf("\n");
-}
-
-static void		bloc_dump(t_bloc *bloc, int j)
-{
-	unsigned int	i;
-	unsigned int	size;
-	char			*addr;
-	int				use;
-
-	i = 0;
-	size = (bloc->type == 'N') ? N : M;
-	size = (bloc->type == 'L') ? bloc->size : size - BLOC_SIZE;
-	use = (bloc->status == USED) ? 1 : 0;
-	if (j == 1)
-		dump_bloc(bloc);
-	while (i++ < (int)BLOC_SIZE)
-	{
-		if (use)
-			ft_printf("{y:1}[%c%d]{e}", bloc->type, j);
-		else
-			ft_printf("{d:1}[%c%d]{e}", bloc->type, j);
-	}
-	if (!use)
-		return ;
-	addr = (char *)(bloc + 1);
-	i = 0;
-	while (i < size)
-		ft_printf("{w:1}[%c]{e}", addr[i++]);
-}
-
 static void		head_dump(t_head *head)
 {
 	t_bloc		*b;
-	int			i;
 	int			j;
+	char		*str;
 
-	i = 0;
 	b = (t_bloc *)(head + 1);
-	while (i++ < (int)HEAD_SIZE)
-		ft_printf("{b:1}[H]{e}");
 	j = 1;
+	str = "{w:1}[Zone %i, Size %i/%i At %hk]{e}\n";
 	while (b)
 	{
-		bloc_dump(b, j);
-		ft_printf("\n");
+		if (b->status == USED)
+		{
+			ft_printf(str, j, b->size, b->area_size, b->timestamp);
+			ft_bloc_dump(b);
+			ft_printf(ENDL);
+		}
 		j++;
 		b = b->next;
 	}
@@ -79,14 +39,13 @@ static void		head_info(t_head *head)
 	ft_printf("%-20s:\t{w:1}%p{e}\n", "Header addr", head);
 	ft_printf("%-20s:\t{w:1}%d{e}\n", "Header Size", HEAD_SIZE);
 	ft_printf("%-20s:\t{w:1}%d{e}\n", "Header Page", head->size);
-	ft_printf("%-20s:\t{w:1}%u{e}\n", "N Area libre", head->n);
-	ft_printf("%-20s:\t{w:1}%u{e}\n", "M Area libre", head->m);
+	ft_printf("%-20s:\t{w:1}%u{e}\n", "Area Available", head->n);
 	ft_printf("%-20s:\t{w:1}%p{e}\n", "Next Header", head->next);
 }
 
 void			ft_head_dump(t_head *head)
 {
-	ft_printf("Memory Dump Information\n");
+	ft_printf("Memory Dump Informations:\n");
 	if (head)
 	{
 		while (head)

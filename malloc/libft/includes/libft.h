@@ -13,8 +13,11 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# define MIN(a, b) ((a < b) ? a : b)
+# define MAX(a, b) ((a > b) ? a : b)
+# define ABS(a, b) ((a < b) ? b - a : a - b)
+
 # include "list.h"
-# include <string.h>
 
 void	*ft_memset(void *b, int c, size_t n);
 void	ft_bzero(void *s, size_t n);

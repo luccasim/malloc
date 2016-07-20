@@ -15,7 +15,6 @@
 
 # include "ft_printf.h"
 # include <unistd.h>
-# include <stdio.h>
 
 # define GET			0
 # define SET			1

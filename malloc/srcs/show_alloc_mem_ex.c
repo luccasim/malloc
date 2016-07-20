@@ -14,9 +14,10 @@
 
 static	void	malloc_info(void)
 {
-	ft_printf("{w:3}Malloc informations :\n");
-	ft_printf("%-20s:\t{w:1}%d{e}\n", "Header size", HEAD_SIZE);
-	ft_printf("%-20s:\t{w:1}%d{e}\n", "Bloc size", BLOC_SIZE);
+	ft_printf("{w:3}Malloc informations :{e}\n");
+	ft_printf("%-20s:\t{w:1}%d{e}\n", "Struct Header size", HEAD_SIZE);
+	ft_printf("%-20s:\t{w:1}%d{e}\n", "Struct Bloc size", BLOC_SIZE);
+	ft_printf("%-20s:\t{w:1}%d{e}\n", "getpagesize()", getpagesize());
 	ft_printf("%-20s:\t{w:1}%d{e}\n", "TINY Bloc size", N);
 	ft_printf("%-20s:\t{w:1}%d{e}\n", "SMALL Bloc size", M);
 	ft_printf("%-20s:\t{w:1}%d{e}\n", "MAX TINY bloc", TINY);
