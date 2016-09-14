@@ -53,14 +53,12 @@ static t_bloc	*find_tiny(t_head *head)
 
 static t_bloc	*find_bloc(t_head *head, size_t size)
 {
-	if (size <= N - BLOC_SIZE)
+	if (size <= N_AREA)
 		return (find_tiny(head));
-	else if (size <= M - BLOC_SIZE)
+	else if (size <= M_AREA)
 		return (find_small(head));
-	else if (size > M - BLOC_SIZE)
-		return (find_large(head));
 	else
-		return (NULL);
+		return (find_large(head));
 }
 
 t_bloc			*ft_head_request(t_head *head, size_t size)

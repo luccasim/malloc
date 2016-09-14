@@ -26,11 +26,14 @@
 # define FREE		'F'
 # define MARG		-10
 # define AREA_SIZE	(getpagesize() / 4)
+# define M_SIZE		16
 # define N			(AREA_SIZE + BLOC_SIZE)
-# define M			((AREA_SIZE * 16) + BLOC_SIZE)
-# define NBR_ALLOC 	10
+# define M			((AREA_SIZE * M_SIZE) + BLOC_SIZE)
+# define N_AREA		N - BLOC_SIZE
+# define M_AREA		M - BLOC_SIZE
+# define NBR_ALLOC 	100
 # define SMALL		(NBR_ALLOC - 1)
-# define TINY		SMALL * 4
+# define TINY		SMALL * M_SIZE
 # define BLOC_SIZE	sizeof(t_bloc)
 # define HEAD_SIZE	sizeof(t_head)
 

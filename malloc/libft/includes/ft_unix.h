@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_unix.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luccasim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 16:36:17 by luccasim          #+#    #+#             */
-/*   Updated: 2016/03/22 04:47:10 by luccasim         ###   ########.fr       */
+/*   Created: 2016/09/14 15:29:37 by luccasim          #+#    #+#             */
+/*   Updated: 2016/09/14 15:29:39 by luccasim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_UNIX_H
+# define FT_UNIX_H
 
-# include <stdarg.h>
-# include <inttypes.h>
+# include "ft_printf.h"
 
-# define WORD_OPT	"w:1"
-# define NBR_OPT	"y:1"
-# define WORD_LEN	"0"
+# define ERROR(a) 		ft_error(0, a)
+# define PERROR(a) 		ft_error(a, "error")
+# define OPT_BUF_SIZE 	100
+# define FAIL			0
+# define SUCCES			1
 
-# define ENDL		"\n"
-# define WORD		"{" WORD_OPT "}%" WORD_LEN "s{e}"
-# define NBR(a)		"{" WORD_OPT "}" #a " = {e}{" NBR_OPT "}%lli{e}"
-
-# define PUTS(a)		ft_printf(WORD ENDL, a)
-
-int		ft_printf(char *str, ...);
-int		ft_fprintf(int fd, char *str, ...);
+int		ft_error(char *error, char *msg);
+int		ft_options(char ***av, char *opt, int32_t size);
+char	*ft_options_sglt(void);
 
 #endif

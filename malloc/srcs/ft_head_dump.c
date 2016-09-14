@@ -34,22 +34,6 @@ static void		head_dump(t_head *head)
 	}
 }
 
-/*
-static void		head_dump(t_head *head)
-{
-	char			*b;
-	unsigned int	i;
-
-	b = (char *)head;
-	i = 0;
-	while (i < head->size)
-	{
-		ft_printf("[%c]", *b);
-		b++;
-		i++;
-	}
-}
-*/
 static void		head_info(t_head *head)
 {
 	ft_printf("%-20s:\t{w:1}%p{e}\n", "Header addr", head);

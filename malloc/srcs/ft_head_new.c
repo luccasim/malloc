@@ -19,7 +19,7 @@ static size_t	page_size(size_t size)
 
 	psize = getpagesize();
 	nbr = size;
-	if (size > M)
+	if (size > M_AREA)
 		nbr = psize * ((nbr / psize) + 1);
 	else
 		nbr = psize * NBR_ALLOC;
@@ -86,7 +86,7 @@ t_head			*ft_head_new(size_t size)
 	addr = mmap(NULL, page, PROT_FLAGS, MAP_FLAGS, -1, 0);
 	if (!addr)
 		return (NULL);
-	if (size > M)
+	if (size > M_AREA)
 		new = large_head(addr, page);
 	else
 		new = small_head(addr, page);
