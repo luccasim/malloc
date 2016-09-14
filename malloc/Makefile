@@ -31,7 +31,7 @@ clean:
 	@/bin/rm -rf $(DOBJ)
 
 fclean: clean
-	#@make -C libft/ fclean
+	@make -C libft/ fclean
 	@/bin/rm -rf $(NAME) $(LINK) $(TEST)
 	@echo "\033[31;1m$(NAME) removes!\n$(LINK) removes!\n$(TEST) removes!\033[0m"
 

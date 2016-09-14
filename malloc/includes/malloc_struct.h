@@ -31,7 +31,7 @@
 # define M			((AREA_SIZE * M_SIZE) + BLOC_SIZE)
 # define N_AREA		N - BLOC_SIZE
 # define M_AREA		M - BLOC_SIZE
-# define NBR_ALLOC 	100
+# define NBR_ALLOC 	132
 # define SMALL		(NBR_ALLOC - 1)
 # define TINY		SMALL * M_SIZE
 # define BLOC_SIZE	sizeof(t_bloc)
