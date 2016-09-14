@@ -12,16 +12,16 @@
 
 #include "malloc_struct.h"
 
-t_bloc		*ft_bloc_new(void *addr, size_t size)
+t_bloc		*ft_bloc_new(void *addr)
 {
 	t_bloc		*bloc;
 
 	bloc = addr;
-	bloc->type = (size == N) ? 'N' : 'M';
+	bloc->type = 'N';
 	bloc->status = FREE;
 	bloc->size = 0;
-	addr += size;
 	bloc->timestamp = 0;
+	addr += N;
 	bloc->next = addr;
 	return (bloc);
 }

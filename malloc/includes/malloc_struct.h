@@ -27,8 +27,8 @@
 # define MARG		-10
 # define AREA_SIZE	(getpagesize() / 4)
 # define N			(AREA_SIZE + BLOC_SIZE)
-# define M			(N * 4 - (BLOC_SIZE * 3))
-# define NBR_ALLOC 	132
+# define M			((AREA_SIZE * 16) + BLOC_SIZE)
+# define NBR_ALLOC 	10
 # define SMALL		(NBR_ALLOC - 1)
 # define TINY		SMALL * 4
 # define BLOC_SIZE	sizeof(t_bloc)
@@ -61,12 +61,12 @@ void				*ft_malloc(size_t size);
 void				ft_free(void *ptr);
 
 void				ft_bloc_dump(t_bloc *bloc);
+void				ft_bloc_cpy(t_bloc *str, t_bloc *dst);
 void				ft_bloc_set(t_head *head, t_bloc *bloc, size_t size);
 void				ft_bloc_unset(t_head *head, t_bloc *bloc);
-void				ft_bloc_defragmentation(t_bloc *bloc);
-void				ft_bloc_cpy(t_bloc *str, t_bloc *dst);
-int					ft_bloc_create_small(t_head *head, t_bloc *bloc);
-t_bloc				*ft_bloc_new(void *addr, size_t size);
+void				ft_bloc_fragmentation(t_bloc *bloc);
+int					ft_bloc_defragmentation(t_head *head, t_bloc *bloc);
+t_bloc				*ft_bloc_new(void *addr);
 
 int					ft_head_del(t_head *head);
 int					ft_head_add(t_head *main, t_head *head);

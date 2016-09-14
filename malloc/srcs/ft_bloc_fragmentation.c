@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bloc_create_small.c                             :+:      :+:    :+:   */
+/*   ft_bloc_fragmentation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luccasim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/30 17:21:23 by luccasim          #+#    #+#             */
-/*   Updated: 2016/03/30 17:36:26 by luccasim         ###   ########.fr       */
+/*   Created: 2016/07/20 03:45:22 by luccasim          #+#    #+#             */
+/*   Updated: 2016/07/20 03:45:25 by luccasim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc_struct.h"
 
-int		ft_bloc_create_small(t_head *head, t_bloc *bloc)
+void	ft_bloc_fragmentation(t_bloc *bloc)
 {
-	t_bloc		*tmp;
-	int			i;
+	t_bloc	*end;
+	t_bloc	*tmp;
+	void	*addr;
 
+	if (bloc->type != 'M')
+		return ;
 	tmp = bloc;
-	i = 0;
-	while (i < 4)
+	end = bloc->next;
+	addr = (void *)(tmp);
+	while (addr != end)
 	{
-		if (tmp->status == USED)
-			return (0);
-		if (tmp->next == NULL && i < 3)
-			return (0);
-		tmp = tmp->next;
-		i++;
+		tmp = ft_bloc_new(addr);
+		addr = tmp->next;
 	}
-	bloc->type = 'M';
-	head->n -= 4;
-	head->m += 1;
-	bloc->next = tmp;
-	ft_memset((bloc + 1), 0, M);
-	return (1);
 }

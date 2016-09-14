@@ -30,7 +30,7 @@ static t_bloc	*find_small(t_head *head)
 	while (tmp)
 	{
 		if (tmp->status == FREE)
-			if (ft_bloc_create_small(head, tmp))
+			if (ft_bloc_defragmentation(head, tmp))
 				return (tmp);
 		tmp = tmp->next;
 	}

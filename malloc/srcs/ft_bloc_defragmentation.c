@@ -12,20 +12,26 @@
 
 #include "malloc_struct.h"
 
-void	ft_bloc_defragmentation(t_bloc *bloc)
+int		ft_bloc_defragmentation(t_head *head, t_bloc *bloc)
 {
-	t_bloc	*end;
-	t_bloc	*tmp;
-	void	*addr;
+	t_bloc		*tmp;
+	int			i;
 
-	if (bloc->type != 'M')
-		return ;
 	tmp = bloc;
-	end = bloc->next;
-	addr = (void *)(tmp);
-	while (addr != end)
+	i = 0;
+	while (i < 4)
 	{
-		tmp = ft_bloc_new(addr, N);
-		addr = tmp->next;
+		if (tmp->status == USED)
+			return (0);
+		if (tmp->next == NULL && i < 3)
+			return (0);
+		tmp = tmp->next;
+		i++;
 	}
+	bloc->type = 'M';
+	head->n -= 4;
+	head->m += 1;
+	bloc->next = tmp;
+	ft_memset((bloc + 1), 0, M);
+	return (1);
 }
